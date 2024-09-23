@@ -12,7 +12,7 @@ int StringCount(const char* const _Str)
 
     while (_Str[Count])
     {
-        Count++;
+        Count += 1;
     }
 
     return Count;
