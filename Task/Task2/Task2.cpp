@@ -1,20 +1,78 @@
-﻿// Task2.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+﻿// 001_NumberCount.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
 #include <iostream>
 
-int main()
+// 음수 안함
+// 0 이외의 양수의 자릿수를 세자.
+int NumberCount(int _Value)
 {
-    std::cout << "Hello World!\n";
+    // /(나누기를 최대한) 연산을 사용하세요.
+    int Result = 0;
+
+    if (0 >= _Value)
+    {
+        return 0;
+    }
+
+    while (0 < _Value)
+    {
+        _Value /= 10;
+        Result += 1;
+    }
+
+    return Result;
 }
 
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
+int NumberCount2(int _Value)
+{
+    // /(나누기를 최대한) 연산을 사용하세요.
+    int Multiple = 1;
+    int Result = 0;
 
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
+    if (0 >= _Value)
+    {
+        return 0;
+    }
+
+    while (true)
+    {
+        if ((_Value / Multiple) >= 1)
+        {
+            Result += 1;
+        }
+        else {
+            break;
+        }
+
+        Multiple *= 10;
+    }
+
+    return Result;
+}
+
+// 해도 되고 안해도 됩니다.
+// 내 기준으로 지금
+// _Value 를 넣어주면 Buffer에 
+// 숫자를 문자열로 만드는 함수.
+void NumberToString(char* Buffer, int BufferSize, int _Value)
+{
+    return;
+}
+
+int main()
+{
+    // 9
+    int Result0 = NumberCount(123583463);
+    int Result1 = NumberCount2(123583463);
+    // 3
+    int Result2 = NumberCount(528);
+    int Result3 = NumberCount2(528);
+    // 0은 영
+    int Result4 = NumberCount(0);
+
+    //char Buffer[100] = { 0 };
+    
+    //NumberToString(Buffer, 100, 3712);
+    // Buffer == "3712"
+}
