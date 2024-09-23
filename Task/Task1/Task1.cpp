@@ -14,7 +14,7 @@ int StringCount(const char* const _Str)
     {
         Count += 1;
     }
-
+     
     return Count;
 }
 
