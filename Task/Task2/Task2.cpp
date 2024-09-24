@@ -52,6 +52,8 @@ int NumberCount2(int _Value)
 // 숫자를 문자열로 만드는 함수.
 void NumberToString(char* Buffer, int BufferSize, int _Value)
 {
+
+    //std::cout << Buffer;
     return;
 }
 
@@ -66,8 +68,8 @@ int main()
     // 0은 영
     int Result4 = NumberCount(0);
 
-    //char Buffer[100] = { 0 };
+    char Buffer[100] = { 0 };
     
-    //NumberToString(Buffer, 100, 3712);
-    // Buffer == "3712"
+    NumberToString(Buffer, 100, 3712);
+    //Buffer == "3712"
 }
