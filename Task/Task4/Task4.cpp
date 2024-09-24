@@ -98,19 +98,29 @@ void MonsterStatusRender()
 // 함수는 다양한 상황에서 쓸수있게 만들수록 좋다.
 // 함수는 작은 기능을 많이 만들고 
 // 함수는 한번에 1가지 일을 할수록 좋다.
+
+void Damaged(int& _DefHp, int _Att)
+{
+    // 게임 로직
+    _DefHp -= _Att;
+}
+
 void DamageText(const char* const _AttName, const char* const _DefName, int& _DefHp, int _Att)
 {
     // 랜더링
     system("cls");
     PlayerStatusRender();
     MonsterStatusRender();
-    printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, _DefName, _Att);
-}
-
-void Damaged(int& _DefHp, int _Att)
-{
-    // 게임 로직
-    _DefHp -= _Att;
+        
+    if (0 >= _DefHp)
+    {
+        _DefHp = 0;
+        printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혀 죽였습니다.\n", _AttName, _DefName, _Att);
+    }
+    else
+    {
+        printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, _DefName, _Att);
+    }
 }
 
 int main()
@@ -122,7 +132,7 @@ int main()
     CreatePlayer("Hero", 10, 100);
     CreateMonster("Orc", 7, 50);
 
-    while (true)
+    while (MonsterHp != 0 and PlayerHp != 0)
     {
         // 화면 전체를 지워라.
         // 콘솔창에 다른 프로그램를 실행해주는 프로그램
