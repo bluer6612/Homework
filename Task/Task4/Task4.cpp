@@ -19,6 +19,9 @@ int MonsterAtt = 10;
 int MonsterHp = 100;
 char MonsterName[NAMELEN] = "NONE";
 
+bool firstAttack = false;
+bool death = false;
+
 // 아주 중요한
 void StrCopy(char* _Arr, int _BufferSize, const char* const _Name)
 {
@@ -103,6 +106,13 @@ void MonsterStatusRender()
 // 함수는 작은 기능을 많이 만들고 
 // 함수는 한번에 1가지 일을 할수록 좋다.
 
+void DamageRandering()
+{
+    // 랜더링
+    PlayerStatusRender();
+    MonsterStatusRender();
+}
+
 void Damaged(int& _DefHp, int _Att)
 {
     // 게임 로직
@@ -111,49 +121,91 @@ void Damaged(int& _DefHp, int _Att)
 
 void DamageText(const char* const _AttName, const char* const _DefName, int& _DefHp, int _Att)
 {
-    // 랜더링
-    system("cls");
-    PlayerStatusRender();
-    MonsterStatusRender();
-        
-    if (0 >= _DefHp)
+    if (death)
+    {
+        return;
+    }
+    else if (0 >= _DefHp)
     {
         _DefHp = 0;
+        death = true;
         printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혀 죽였습니다.\n", _AttName, _DefName, _Att);
-        return;
     }
     else
     {
         printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, _DefName, _Att);
     }
+
+    char Input = _getch();
+}
+
+bool DicefirstAttack()
+{
+    if (rand() % 2 == 0) {
+        firstAttack = false;
+        printf_s("%s의 선공입니다.\n", MonsterName);
+    }
+    else
+    {
+        firstAttack = true;
+        printf_s("%s의 선공입니다.\n", PlayerName);
+    }
+
+    return firstAttack;
 }
 
 int main()
 {
     srand(time(0));
     
-    CreatePlayer("Hero", rand() % 10 + 1, 100);
-    CreateMonster("Orc", rand() % 10 + 1, 50);
+    CreatePlayer("Hero", 10, 100);
+    CreateMonster("Orc", 10, 50);
 
     while (MonsterHp != 0 and PlayerHp != 0)
     {
         // 화면 전체를 지워라.
         // 콘솔창에 다른 프로그램를 실행해주는 프로그램
 
+
+        DamageRandering();
+
+        firstAttack = DicefirstAttack();
+
+        char Input = _getch();
+
         system("cls");
 
-        char Input = ' ';
+        if (firstAttack)
+        {
+            Damaged(MonsterHp, PlayerAtt);
+            DamageRandering();
+            DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+            DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
 
-        PlayerStatusRender();
-        MonsterStatusRender();
-        Input = _getch();
+            system("cls");
 
-        Damaged(MonsterHp, PlayerAtt);
-        DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
-        Input = _getch();
+            Damaged(PlayerHp, MonsterAtt);
+            DamageRandering();
+            DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+            DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
 
-        Damaged(PlayerHp, MonsterAtt);
-        DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
-        Input = _getch();
+            system("cls");
+        }
+        else
+        {
+            Damaged(PlayerHp, MonsterAtt);
+            DamageRandering();
+            DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+            DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+
+            system("cls");
+
+            Damaged(MonsterHp, PlayerAtt);
+            DamageRandering();
+            DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+            DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+
+            system("cls");
+        }
     }
 }
