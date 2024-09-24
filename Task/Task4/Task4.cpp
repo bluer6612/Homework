@@ -69,6 +69,10 @@ void StatusRender(const char* _Name, int _Att, int _HP)
     }
     printf_s("\n");
 
+    if (0 >= _HP)
+    {
+        _HP = 0;
+    }
     printf_s("공격력 : %d\n", _Att);
     printf_s("체력 : %d\n", _HP);
 
@@ -116,6 +120,7 @@ void DamageText(const char* const _AttName, const char* const _DefName, int& _De
     {
         _DefHp = 0;
         printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혀 죽였습니다.\n", _AttName, _DefName, _Att);
+        return;
     }
     else
     {
@@ -125,12 +130,10 @@ void DamageText(const char* const _AttName, const char* const _DefName, int& _De
 
 int main()
 {
-    // char Test0[100] = "Player";
-    /*char Test1[50] = Test0;
-    Test1 = Test0*/;
-
-    CreatePlayer("Hero", 10, 100);
-    CreateMonster("Orc", 7, 50);
+    srand(time(0));
+    
+    CreatePlayer("Hero", rand() % 10 + 1, 10);
+    CreateMonster("Orc", rand() % 10 + 1, 50);
 
     while (MonsterHp != 0 and PlayerHp != 0)
     {
