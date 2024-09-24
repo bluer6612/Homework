@@ -132,7 +132,7 @@ int main()
 {
     srand(time(0));
     
-    CreatePlayer("Hero", rand() % 10 + 1, 10);
+    CreatePlayer("Hero", rand() % 10 + 1, 100);
     CreateMonster("Orc", rand() % 10 + 1, 50);
 
     while (MonsterHp != 0 and PlayerHp != 0)
