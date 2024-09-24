@@ -149,11 +149,11 @@ int main()
         Input = _getch();
 
         Damaged(MonsterHp, PlayerAtt);
-        DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+        DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
         Input = _getch();
 
         Damaged(PlayerHp, MonsterAtt);
-        DamageText(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+        DamageText(PlayerName, MonsterName, MonsterHp, PlayerAtt);
         Input = _getch();
     }
 }
