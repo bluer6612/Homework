@@ -62,7 +62,7 @@ void CreateMonster(const char* const _Ptr, int _Att, int _Hp)
 
 void StatusRender(const char* _Name, int _Att, int _HP)
 {
-    int nameLineCount = LINECOUNT - strlen(_Name) - strlen(" Status") - 1;
+    int nameLineCount = LINECOUNT - strlen(_Name) - strlen(" ㅁ") - 1;
 
     printf_s("%s Status ", _Name);
 
