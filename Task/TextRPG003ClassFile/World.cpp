@@ -1,60 +1,60 @@
 #include "World.h"
 #include "FightZone.h"
 #include "Town.h"
+#include "Player.h"
 #include <conio.h>
 
 
 void UWorld::InPlayer(class UPlayer& _Player)
 {
-	char InputName[100] = {0,};
-
-	system("cls");
-
-	std::cout << "이름을 적어주세요" << std::endl;
-	std::cin >> InputName;
+	char InputName[100] = {0, };
 
 	while (true)
 	{
-		
+		if (0 == InputName[0])
+		{
+			system("cls");
+			std::cout << "이름을 적어주세요" << std::endl;
+			std::cin >> InputName;
 
-		system("cls");
-		printf_s("당신의 이름은 %s입니다. 결정하시겠습니까?\n", InputName);
+			system("cls");
+			printf_s("당신의 이름은 %s입니다. 결정하시겠습니까?\n", InputName);
+		}
+
 		printf_s("a. 결정\n");
 		printf_s("b. 재입력\n");
 		int Select = _getch();
-		int IsEnd = 0;
+		bool IsEnd = false;
 		switch (Select)
 		{
 		case 'a':
 		case 'A':
-			IsEnd = 0;
+			IsEnd = true;
 			break;
 		case 'b':
 		case 'B':
-			IsEnd = 1;
-			system("cls");
-
-			std::cout << "이름을 적어주세요" << std::endl;
-			std::cin >> InputName;
+			InputName[0] = 0;
+			IsEnd = false;
 			break;
 		default:
-			printf_s("잘못된 선택입니다. 다시 선택해주세요\n", InputName);
-			_getch();
-			IsEnd = 2;
+			printf_s("잘못된 선택입니다. 다시 선택해주세요\n");
+			Select = _getch();
+			IsEnd = false;
 			break;
 		}
 
-		if (0 == IsEnd)
+		if (IsEnd)
 		{
+			_Player.SetName(InputName);
 			break;
 		}
-		
+
 	}
 
 	// 마지막맵까지 여기서 이 방식으로 가면
 	// 마을에 있을때 FightZone은 없어도 된다.
 	// 지금 배운 지역변수 
-	
+
 	// new를 왜 배워야 하는거냐?
 	// 8기가
 	UTown TownZone;
@@ -67,6 +67,8 @@ void UWorld::InPlayer(class UPlayer& _Player)
 	while (true)
 	{
 		TownZone.InPlayer(_Player);
+
+		//_Player.SetName("Test Player");
 	}
 
 
