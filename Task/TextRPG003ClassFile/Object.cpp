@@ -12,3 +12,8 @@ void UObject::SetName(const char* const _Name)
 
     strcpy_s(Name, _Name);
 }
+
+void UObject::SetNumber(const int _Number)
+{
+    Number = _Number;
+}
