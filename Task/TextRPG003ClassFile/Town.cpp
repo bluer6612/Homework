@@ -3,7 +3,7 @@
 #include "Player.h"
 
 // 포인터나 레퍼런스는 무조건 8바이트 이기 때문에
-int UTown::InPlayer(class UPlayer& _Player, int _Number)
+int UTown::InPlayer(class UPlayer& _Player)
 {
 	InMsgPrint();
 
@@ -15,44 +15,27 @@ int UTown::InPlayer(class UPlayer& _Player, int _Number)
 		std::cout << "0. 체력회복\n";
 		std::cout << "1. 강화\n";
 		std::cout << "2. 사냥터이동\n";
-		if (0 == _Number)
-		{
-			std::cout << "3. 중급마을로 이동\n";
-		}
-		else if (1 == _Number)
-		{
-			std::cout << "3. 초급마을로 이동\n";
-		}
+		std::cout << "3. 중급마을로 이동\n";
 		int Select = _getch();
 
 		switch (Select)
 		{
-		case '0':
-			printf_s("0눌렀습니다.");
-			_getch();
-			break;
-		case '1':
-			printf_s("1눌렀습니다.");
-			_getch();
-			break;
 		case '2':
 		{
+			_Player.SetCurZone(Select - '0');
+			// UFightzone FightZone;
+
 			printf_s("2눌렀습니다.");
 			_getch();
 			return 2;
-		}
-		case '3':
-			printf_s("3눌렀습니다.");
-			_getch();
-			if (0 == _Number)
-			{
-				return 1;
-			}
-			else if (1 == _Number)
-			{
-				return 0;
-			}
 			break;
+		}
+		case '0':
+		case '1':
+		case '3':
+			printf_s("아직 완성되지 않은 기능입니다.");
+			_getch();
+			return 1;
 		default:
 			break;
 		}
