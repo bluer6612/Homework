@@ -22,12 +22,12 @@ void UStatusUnit::TopLine()
 void UStatusUnit::BotLine()
 {
     // BotLine
-    printf_s("체력 : %d\n", Hp);
     for (int i = 0; i < LINECOUNT; i += 1)
     {
         printf_s("-");
     }
     printf_s("\n");
+
 }
 
 void UStatusUnit::StatusRender()
@@ -39,10 +39,12 @@ void UStatusUnit::StatusRender()
     // 디버깅상 받는게 유리해서.
     TopLine();
 
-    // 이번에 핵심.
-    // 이것도 쪼개는게 맞다.
-    printf_s("공격력 : %d ~ %d\n", MinAtt, MaxAtt);
+    // UStatusUnit* const this;
+    // 부모쪽에서 virtual을 호출해도 자식쪽 virtual이 호출됩니다.
+    this->StatusTextPrint();
 
+    // 가상함수나 이런애들이 더 느립니다.
     BotLine();
 }
+
 

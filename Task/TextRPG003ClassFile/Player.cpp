@@ -12,13 +12,11 @@ UPlayer::UPlayer()
 	// std::cout << "플레이어 생성자" << std::endl;
 }
 
-void UPlayer::StatusRender()
+void UPlayer::StatusTextPrint()
 {
-    TopLine();
-
     printf_s("공격력 : %d ~ %d + %d\n", MinAtt, MaxAtt, EquipAtt);
-
-    BotLine();
+    printf_s("체력 : %d\n", Hp);
+    printf_s("골드 : %d\n", Gold);
 }
 
 // 맴버함수를 구현할대는 이러면 그냥 전역함수다.
