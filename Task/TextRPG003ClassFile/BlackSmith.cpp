@@ -35,6 +35,20 @@ void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
 			NeedGold = UpgradeLevel * 100;
 
 			printf_s("+%d강 강화를 시도합니다, %d 골드가 소모 됩니다.\n", UpgradeLevel, UpgradeLevel * 100);
+
+			if (15 < UpgradeLevel)
+			{
+				std::cout << "+15강을 초과하여 강화할 수 없습니다.\n";
+				_getch();
+				return;
+			}
+			else if (_Player.GetGold() < NeedGold)
+			{
+				std::cout << "강화에 필요한 골드가 부족합니다.\n";
+				_getch();
+				return;
+			}
+
 			std::cout << "1. 강화한다\n";
 			std::cout << "2. 취소한다\n";
 			Select = _getch();
@@ -42,19 +56,6 @@ void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
 			{
 			case '1':
 				system("cls");
-
-				if (15 < UpgradeLevel)
-				{
-					std::cout << "+15강을 초과하여 강화할 수 없습니다.\n";
-					_getch();
-					return;
-				}
-				else if (_Player.GetGold() < NeedGold)
-				{
-					std::cout << "강화에 필요한 골드가 부족합니다.\n";
-					_getch();
-					return;
-				}
 
 				_Player.SetGold(_Player.GetGold() - NeedGold);
 
