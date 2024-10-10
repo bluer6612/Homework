@@ -12,7 +12,7 @@ void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
 		return;
 	}
 
-	_Player.SetGold(100000);
+	_Player.SetGold(5000);
 
 	int NeedGold = 0;
 	int UpgradeLevel = 0;
@@ -22,6 +22,7 @@ void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
 	while (true)
 	{
 		system("cls");
+
 		_Player.StatusRender();
 		std::cout << "1. 강화\n";
 		std::cout << "2. 나간다\n";
