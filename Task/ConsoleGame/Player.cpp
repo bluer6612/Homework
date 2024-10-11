@@ -21,6 +21,7 @@ void Player::Tick()
 		case 'A':
 		case 'a':
 			Dir = Enums::GAMEDIR::LEFT;
+			PosMove = FIntPoint::LEFT;
 			break;
 		case 'D':
 		case 'd':
