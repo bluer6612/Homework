@@ -27,6 +27,5 @@ private:
 	FIntPoint Pos;
 	FIntPoint PosMove;
 	ConsoleImage PlayerImage;
-	GlobalValue GV;
 };
 

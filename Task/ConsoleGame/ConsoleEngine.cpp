@@ -1,6 +1,5 @@
 #include "ConsoleEngine.h"
 #include <Windows.h>
-#include "GlobalValue.h"
 
 ConsoleEngine::ConsoleEngine()
 {
@@ -26,10 +25,9 @@ void ConsoleEngine::Start()
 
 void ConsoleEngine::BeginPlay()
 {
-	GlobalValue GV;
 
 	Window.BeginPlay();
-	Window.SetScreenSize({GV.worldSizeY, GV.worldSizeX});
+	Window.SetScreenSize({ GlobalValue::worldSizeY, GlobalValue::worldSizeX});
 
 	NewPlayer.BeginPlay();
 }
