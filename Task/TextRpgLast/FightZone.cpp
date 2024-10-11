@@ -8,6 +8,7 @@
 #include "TextRpgCore.h"
 #include "Orc.h"
 #include "Goblin.h"
+#include <iostream>
 
 void UFightZone::CreateMonster()
 {
@@ -37,9 +38,52 @@ void UFightZone::CreateMonster()
 	
 	// 고블린인지 오크인지가 정해졌다.
 	// 모두다 만들었으면 준비시켜야 한다.
+	// FightZone이 몬스터를 만들고 그때 BeginPlay를 해준다.
 	CurMonster->BeginPlay();
 }
 
+void UFightZone::DamageRender(UObject* _Att, UObject* _Def, int _Damage)
+{
+	std::cout << _Att->GetName() << "가 " << _Def->GetName() << "에게 " << _Damage << "의 데미지를 주었습니다" << std::endl;
+}
+
+void UFightZone::Fight(AActor& _Left, AActor& _Right)
+{
+
+	// 여기서 싸우겠죠?
+	while (true)
+	{
+		system("cls");
+		_Left.StatusRender();
+		_Right.StatusRender();
+		_getch();
+
+		_Right.DamageLogic(_Left);
+		DamageRender(&_Left, &_Right, _Right.GetDamageValue());
+		_getch();
+
+		if (_Right.IsDeath())
+		{
+			std::cout << _Left.GetName() << "이 승리했습니다." << std::endl;
+			_Left.SetGold(_Left.GetGold() + _Right.GetGold());
+			_getch();
+			break;
+		}
+
+		_Left.DamageLogic(_Right);
+		DamageRender(&_Right, &_Left, _Left.GetDamageValue());
+		_getch();
+		if (_Left.IsDeath())
+		{
+			std::cout << _Right.GetName() << "이 승리했습니다." << std::endl;
+			_Right.SetGold(_Right.GetGold() + _Right.GetGold());
+			_getch();
+			break;
+		}
+
+	}
+
+}
 
 UZone* UFightZone::InPlayer()
 {
@@ -66,18 +110,11 @@ UZone* UFightZone::InPlayer()
 	// 객체화 되는 
 	
 	CreateMonster();
+	// 로직이 말단에 가까운 여러곳에서 사용하기가 힘들어진다.
 	APlayer& Player = TextRpgCore::GetPlayer();
 	AMonster& Monster = *CurMonster;
 
-	// 여기서 싸우겠죠?
-	while (true)
-	{
-		Player.StatusRender();
-		Monster.StatusRender();
-		_getch();
-
-		break;
-	}
+	Fight(Player, Monster);
 
 	// 사용을 다 했으면
 	// 갈끔하게 지워주면 됩니다.

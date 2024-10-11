@@ -1,6 +1,11 @@
 #include "Player.h"
 #include <iostream>
 
+int APlayer::GetDamage() const
+{
+	return UFightUnit::GetDamage() + EquipAtt;
+}
+
 APlayer::APlayer()
 {
 	UObject* ObjectPtr = this;

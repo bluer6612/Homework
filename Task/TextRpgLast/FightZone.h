@@ -14,6 +14,12 @@ public:
 
 	UZone* InPlayer() override;
 
+	void DamageRender(UObject* _Att, UObject* _Def, int _Damage);
+
+	// 액터라면 누구나 싸울수 있게 만들려고 한다.
+	void Fight(class AActor& _Left, class AActor& _Right);
+
+
 private:
 	// 다형성의 핵심은 코드 관리이다.
 	// 다형성은 상당히 느려집니다.

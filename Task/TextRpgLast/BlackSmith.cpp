@@ -94,7 +94,7 @@ UZone* BlackSmith::InPlayer()
 
 	APlayer& _Player = TextRpgCore::GetPlayer();
 
-	_Player.SetGold(1000000);
+	// _Player.SetGold(1000000);
 
 	srand(static_cast<unsigned int>(time(nullptr)));
 

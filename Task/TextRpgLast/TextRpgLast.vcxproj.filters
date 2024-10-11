@@ -46,6 +46,7 @@
     <ClCompile Include="Orc.cpp">
       <Filter>Object\Actor\Contents\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalValue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TextRpgCore.h">
@@ -93,6 +94,7 @@
     <ClInclude Include="Orc.h">
       <Filter>Object\Actor\Contents\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalValue.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -122,5 +124,8 @@
     <Filter Include="Object\Actor\Contents\Monster">
       <UniqueIdentifier>{34983623-d962-4e06-8256-5cb1089bbf5d}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="핵심구조.txt" />
   </ItemGroup>
 </Project>

@@ -133,6 +133,7 @@
     <ClCompile Include="BlackSmith.cpp" />
     <ClCompile Include="FightUnit.cpp" />
     <ClCompile Include="FightZone.cpp" />
+    <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Orc.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="FightUnit.h" />
     <ClInclude Include="FightZone.h" />
+    <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Orc.h" />
@@ -166,6 +168,9 @@
     <ClInclude Include="Town.h" />
     <ClInclude Include="Zone.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="핵심구조.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

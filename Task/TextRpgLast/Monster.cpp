@@ -1,10 +1,13 @@
 #include "Monster.h"
 #include <iostream>
 #include <BaseSystem/EngineDebug.h>
+#include "GlobalValue.h"
 
 void AMonster::BeginPlay()
 {
-
+	// 뭘
+	AActor::BeginPlay();
+	
 }
 
 void AMonster::SetRandomGold(int _Min, int _Max)
@@ -16,5 +19,5 @@ void AMonster::SetRandomGold(int _Min, int _Max)
 
 	// srand를 여기서 할거냐?
 	int Gold = rand() % (_Max - _Min) + _Min;
-	SetGold(Gold);
+	SetGold(Gold * GlobalValue::GoldRatio);
 }

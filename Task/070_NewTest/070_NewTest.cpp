@@ -32,6 +32,7 @@ int main()
         if (nullptr != AllImagePixel[i])
         {
             delete[] AllImagePixel[i];
+            AllImagePixel[i] = nullptr;
         }
     }
 

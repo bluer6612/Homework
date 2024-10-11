@@ -7,7 +7,7 @@ class AMonster : public AActor
 {
 public:
 	// 시작함수
-	virtual void BeginPlay() = 0;
+	void BeginPlay() override;
 
 	void SetRandomGold(int _Min, int _Max);
 

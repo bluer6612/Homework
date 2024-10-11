@@ -20,7 +20,10 @@ TextRpgCore::TextRpgCore()
 void TextRpgCore::Start()
 {
 	srand(static_cast<unsigned int>(time(nullptr)));
+
 	MainPlayer.SetName("MainPlayer");
+	MainPlayer.BeginPlay();
+
 	World.ZoneInit();
 	World.PlayerZonePlay();
 }

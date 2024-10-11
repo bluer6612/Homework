@@ -9,6 +9,7 @@ class UConsoleWindow
 public:
 	UConsoleWindow();
 
+
 	// 초미니 컴퓨터가 있다고 생각하자.
 
 	// "****************"0
@@ -23,9 +24,31 @@ public:
 
 	void ScreenRender();
 
-	void SetPixel(int _X, int _Y, char _Text);
+	void SetScreenSize(FIntPoint _Value)
+	{
+		SetScreenSize(_Value.X, _Value.Y);
+	}
+
+	void SetScreenSize(int _X, int _Y);
+
+	void WindowSetPixel(FIntPoint _Value, char _Text = '*')
+	{
+		WindowSetPixel(_Value.X, _Value.Y, _Text);
+	}
+
+	void WindowSetPixel(int _X, int _Y, char _Text = '*');
 
 	void Clear();
+
+	ConsoleImage* GetBackBufferPtr()
+	{
+		return &BackBuffer;
+	}
+
+	ConsoleImage& GetBackBufferRef()
+	{
+		return BackBuffer;
+	}
 
 private:
 	int FrameDelay = 250;

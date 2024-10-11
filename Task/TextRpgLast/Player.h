@@ -23,6 +23,8 @@ public:
 
 	void StatusTextRender() override;
 
+	int GetDamage() const override;
+
 private:
 	int EquipAtt = 0;
 };

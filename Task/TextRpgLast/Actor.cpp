@@ -11,6 +11,10 @@ void AActor::StatusRender()
 	BotLine();
 }
 
+void AActor::BeginPlay()
+{
+	UFightUnit::Init(this);
+}
 
 void AActor::StatusTextRender()
 {
