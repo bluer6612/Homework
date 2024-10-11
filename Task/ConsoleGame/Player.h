@@ -1,5 +1,6 @@
 #pragma once
 #include "ConsoleImage.h"
+#include "GlobalValue.h"
 
 //class AActor
 //{
@@ -26,5 +27,6 @@ private:
 	FIntPoint Pos;
 	FIntPoint PosMove;
 	ConsoleImage PlayerImage;
+	GlobalValue GV;
 };
 

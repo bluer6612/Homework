@@ -56,7 +56,7 @@ void ConsoleImage::SetPixel(FIntPoint _Pos, char _Char)
 	}
 
 	// 화면 바깥에 그려지는것 막은것.
-	if (0 > _Pos.Y || X < _Pos.Y)
+	if (0 > _Pos.Y || Y < _Pos.Y)
 	{
 		return;
 	}
@@ -81,16 +81,18 @@ void ConsoleImage::Copy(FIntPoint _Offset, ConsoleImage& _Image)
 	}
 }
 
-FIntPoint ConsoleImage::CheckWall(FIntPoint _Pos)
+FIntPoint ConsoleImage::CheckWall(int _Y, int _X, FIntPoint _Pos, FIntPoint _PosMove)
 {
 	// 화면 바깥에 그려지는것 막은것
-	if (0 > _Pos.X || X < _Pos.X)
+	if (0 > _Pos.X + _PosMove.X || _X < _Pos.X + _PosMove.X)
 	{
 		return FIntPoint::NONE;
 	}
 	
-	if (0 > _Pos.Y || X < _Pos.Y)
+	if (0 > _Pos.Y + _PosMove.Y || _Y < _Pos.Y + _PosMove.Y)
 	{
 		return FIntPoint::NONE;
 	}
+	
+	return _PosMove;
 }

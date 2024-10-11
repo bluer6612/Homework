@@ -2,6 +2,7 @@
 #include <conio.h>
 #include "Enums.h"
 #include "ConsoleImage.h"
+#include "GlobalValue.h"
 
 void Player::BeginPlay()
 {
@@ -21,7 +22,6 @@ void Player::Tick()
 		case 'A':
 		case 'a':
 			Dir = Enums::GAMEDIR::LEFT;
-			PosMove = FIntPoint::LEFT;
 			break;
 		case 'D':
 		case 'd':
@@ -44,7 +44,7 @@ void Player::Tick()
 
 		if (Enums::GAMEDIR::NONE != Dir)
 		{
-			PosMove = CheckWall(Pos + PosMove);
+			PosMove = ConsoleImage::CheckWall(GV.worldSizeX, GV.worldSizeY, Pos, PosMove);
 		}
 	}
 
