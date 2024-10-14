@@ -19,11 +19,6 @@ void AActor::SetActorLocation(FIntPoint _Pos)
 	Pos = _Pos;
 }
 
-FIntPoint AActor::GetActorLocation(FIntPoint _Pos)
-{
-	return _Pos;
-}
-
 void AActor::AddActorLocation(FIntPoint _Dir)
 {
 	Pos += _Dir;

@@ -17,7 +17,10 @@ public:
 
 	void AddActorLocation(FIntPoint _Pos);
 
-	FIntPoint GetActorLocation(FIntPoint _Pos);
+	FIntPoint GetActorLocation()
+	{
+		return Pos;
+	}
 
 
 protected:
