@@ -62,8 +62,6 @@ public:
 
 	void SetPixel(FIntPoint _Pos, char _Char);
 
-	FIntPoint CheckWall(int _X, int _Y, FIntPoint _Pos, FIntPoint _PosMove);
-
 private:
 	// 상수 안됩니다.
 	char** Arr = nullptr;

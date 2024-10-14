@@ -1,15 +1,36 @@
 #include "Player.h"
 #include <conio.h>
 #include "Enums.h"
-#include "ConsoleImage.h"
+#include "GlobalValue.h"
+#include "ConsoleEngine.h"
 
 void Player::BeginPlay()
 {
-	PlayerImage.Create({1, 1}, '@');
+	Super::BeginPlay();
+
+	RenderImage.Create({1, 1}, '@');
 }
 
 void Player::Tick()
 {
+	Super::Tick();
+	// ConsoleEngine::MainPlayer
+
+	// 타고가서 쓰게 할려는 방법.
+	// ConsoleEngine::GetEngine().GetPlayer()
+
+	// ConsoleImage& BackBuffer = *_BackBuffer;
+
+	// static은 전역이니까 객체가 필요없다.
+	ConsoleEngine::GetWindow();
+	ConsoleEngine::GetWindowSize();
+
+	// 남에 코드 안건드리고 
+	GlobalValue::WindowPtr;
+	GlobalValue::WindowSize;
+
+	
+
 	int Value = _kbhit();
 	Enums::GAMEDIR Dir = Enums::GAMEDIR::NONE;
 	if (Value != 0)
@@ -21,54 +42,54 @@ void Player::Tick()
 		case 'A':
 		case 'a':
 			Dir = Enums::GAMEDIR::LEFT;
-			PosMove = FIntPoint::LEFT;
 			break;
 		case 'D':
 		case 'd':
 			Dir = Enums::GAMEDIR::RIGHT;
-			PosMove = FIntPoint::RIGHT;
 			break;
 		case 'W':
 		case 'w':
 			Dir = Enums::GAMEDIR::UP;
-			PosMove = FIntPoint::UP;
 			break;
 		case 'S':
 		case 's':
 			Dir = Enums::GAMEDIR::DOWN;
-			PosMove = FIntPoint::DOWN;
 			break;
+		case 'Z':
+		case 'z':
+		{
+			Bullet* NewBullet = ConsoleEngine::GetEngine().SpawnActor<Bullet>();
+
+			// 1. 총알이 플레이어 위치에 나오게 만드세요
+			// 2. 총알이 위쪽으로 올라가게 만드세요.
+			NewBullet->SetActorLocation(this->GetActorLocation());
+
+			break;
+		}
 		default:
 			break;
 		}
 
-		if (Enums::GAMEDIR::NONE != Dir)
-		{
-			PosMove = ConsoleImage::CheckWall(GlobalValue::worldSizeX, GlobalValue::worldSizeY, Pos, PosMove);
-		}
 	}
 
 	switch (Dir)
 	{
 	case Enums::GAMEDIR::LEFT:
+		AddActorLocation(FIntPoint::LEFT);
+		break;
 	case Enums::GAMEDIR::RIGHT:
+		AddActorLocation(FIntPoint::RIGHT);
+		break;
 	case Enums::GAMEDIR::UP:
+		AddActorLocation(FIntPoint::UP);
+		break;
 	case Enums::GAMEDIR::DOWN:
-		Pos += PosMove;
+		AddActorLocation(FIntPoint::DOWN);
 		break;
 	default:
 		break;
 	}
 
+	// Pos += FIntPoint::RIGHT;
 }
 
-void Player::Render(ConsoleImage* _BackBuffer)
-{
-	// delete _BackBuffer;
-	_BackBuffer->Copy(Pos, PlayerImage);
-}
-
-void Player::SetActorLocation(FIntPoint _Pos)
-{
-	Pos = _Pos;
-}

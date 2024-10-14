@@ -1,4 +1,5 @@
 #include "GlobalValue.h"
 
-	const int GlobalValue::worldSizeX = 10;
-	const int GlobalValue::worldSizeY = 20;
+FIntPoint GlobalValue::WindowSize;
+
+UConsoleWindow* GlobalValue::WindowPtr = nullptr;
