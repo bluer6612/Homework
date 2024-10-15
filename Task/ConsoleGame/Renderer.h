@@ -4,6 +4,8 @@
 class Renderer
 {
 public:
+	bool Active = true;
+
 	ConsoleImage RenderImage;
 };
 

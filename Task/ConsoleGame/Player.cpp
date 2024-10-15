@@ -5,8 +5,13 @@
 #include "ConsoleEngine.h"
 #include "Renderer.h"
 
+Player* Player::MainPlayer = nullptr;
+
 void Player::BeginPlay()
 {
+	// 딱 1개 만들어지는 플레이어가 static 공유되게 됩니다.
+	MainPlayer = this;
+
 	Super::BeginPlay();
 
 	Renderer* Render = CreateDefaultSubObject();

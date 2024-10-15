@@ -24,6 +24,10 @@ public:
 
 	class Renderer* CreateDefaultSubObject();
 
+	class Renderer* GetImageRenderer()
+	{
+		return ImageRenderer;
+	}
 
 protected:
 	// ConsoleImage RenderImage;
