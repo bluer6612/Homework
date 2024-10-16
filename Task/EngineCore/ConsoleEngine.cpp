@@ -16,8 +16,8 @@ ConsoleEngine::ConsoleEngine()
 }
 
 
-void ConsoleEngine::Start(void(*Ptr)(ConsoleEngine*))
-// void ConsoleEngine::Start(class UserInit* _Init)
+// void ConsoleEngine::Start(void(*Ptr)(ConsoleEngine*))
+void ConsoleEngine::Start(class UserInit* _Init)
 {
 	ConsoleEngine Engine;
 
@@ -25,10 +25,10 @@ void ConsoleEngine::Start(void(*Ptr)(ConsoleEngine*))
 
 	Engine.BeginPlay();
 
-	// 콜백
-	// _Init->UserBeginPlay(&Engine);
+	_Init->UserBeginPlay(&Engine);
 
-	Ptr(&Engine);
+	// 콜백
+	// Ptr(&Engine);
 
 	while (true == Engine.EngineActive)
 	{

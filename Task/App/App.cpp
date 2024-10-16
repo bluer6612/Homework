@@ -4,19 +4,11 @@
 #include <iostream>
 #include <EngineCore/ConsoleEngine.h>
 #include <TetrisContents/TetrisInit.h>
-#include <TetrisContents/Block.h>
-#include <EngineCore/ConsoleWindow.h>
-
-void MyInit(ConsoleEngine* _Engine)
-{
-    _Engine->GetWindow()->SetScreenSize(20, 20);
-    _Engine->SpawnActor<Block>();
-}
 
 int main()
 {
-    // TetrisInit Init;
-    ConsoleEngine::Start(MyInit);
+    TetrisInit Init;
+    ConsoleEngine::Start(&Init);
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴

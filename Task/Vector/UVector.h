@@ -69,7 +69,8 @@ public:
 		if (SizeValue + 1 > CapacityValue)
 		{
 			// 정확한지는 모르겠습니다.
-			reserve(CapacityValue * 1.5);
+			// 끝.
+			reserve((CapacityValue * 1.5) + 1);
 		}
 
 		// 내부 에러가 안납니다.

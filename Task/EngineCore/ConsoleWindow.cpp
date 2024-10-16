@@ -32,7 +32,7 @@ void UConsoleWindow::ScreenRender()
 {
 	FIntPoint Point = BackBuffer.GetImageSize();
 
-	for (size_t y = 0; y < Point.X; y++)
+	for (size_t y = 0; y < Point.Y; y++)
 	{
 		// 복사가 일어납니다. 느려진다.
 		// 왜이렇게 느리지? 

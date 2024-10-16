@@ -4,9 +4,9 @@
 class ConsoleEngine
 {
 public:
-	// static void Start(class UserInit* _Init);
+	static void Start(class UserInit* _Init);
 
-	static void Start(void(*Ptr)(ConsoleEngine* _Engine));
+	// static void Start(void(*Ptr)(ConsoleEngine* _Engine));
 
 	static ConsoleEngine& GetEngine()
 	{
