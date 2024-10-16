@@ -6,7 +6,6 @@ public:
 	int X = 0;
 	int Y = 0;
 
-	static const FIntPoint NONE;
 	static const FIntPoint LEFT;
 	static const FIntPoint RIGHT;
 	static const FIntPoint UP;
@@ -29,6 +28,15 @@ public:
 		Result.Y = Y + _Other.Y;
 		return Result;
 	}
+
+	FIntPoint operator/(int _Value) const
+	{
+		FIntPoint Result;
+		Result.X = X / _Value;
+		Result.Y = Y / _Value;
+		return Result;
+	}
+
 
 	bool operator==(FIntPoint _Other) const
 	{

@@ -24,6 +24,11 @@ public:
 
 	void ScreenRender();
 
+	FIntPoint GetScreenSize()
+	{
+		return BackBuffer.GetImageSize();
+	}
+
 	void SetScreenSize(FIntPoint _Value)
 	{
 		SetScreenSize(_Value.X, _Value.Y);
@@ -31,12 +36,12 @@ public:
 
 	void SetScreenSize(int _X, int _Y);
 
-	void WindowSetPixel(FIntPoint _Value, char _Text)
+	void WindowSetPixel(FIntPoint _Value, char _Text = '*')
 	{
 		WindowSetPixel(_Value.X, _Value.Y, _Text);
 	}
 
-	void WindowSetPixel(int _X, int _Y, char _Text);
+	void WindowSetPixel(int _X, int _Y, char _Text = '*');
 
 	void Clear();
 

@@ -58,7 +58,7 @@ void ConsoleEngine::BeginPlay()
 
 	// 나중에 배우겠습니다.
 	// 함수포인터로 하는법
-	Window->SetScreenSize({3, 5});
+	Window->SetScreenSize({10, 10});
 }
 
 void ConsoleEngine::Tick()
