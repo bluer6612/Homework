@@ -120,31 +120,12 @@ int main()
 
         // stdvector.resize(10);
 
-        //
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    // 0개
-        //    // capacity가 먼저 늘어난다.
-        //    // i가 늘어난 공간에 추가되죠.
-        //    // size도 늘어난다.
-        //    stdvector.push_back(i);
-        //    std::cout << "push : " << stdvector[i] << std::endl;
-        //    std::cout << "capacity : " << stdvector.capacity() << std::endl;
-        //    std::cout << "size     : " << stdvector.size() << std::endl;
-        //}
-
-        //stdvector.clear();
-
-        //std::cout << "claer after capacity : " << stdvector.capacity() << std::endl;
-    }
-
-    
-    {
-        UVector<int> stdvector;
-        stdvector.reserve(3);
-
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 10; i++)
         {
+            // 0개
+            // capacity가 먼저 늘어난다.
+            // i가 늘어난 공간에 추가되죠.
+            // size도 늘어난다.
             stdvector.push_back(i);
             std::cout << "push : " << stdvector[i] << std::endl;
             std::cout << "capacity : " << stdvector.capacity() << std::endl;
@@ -152,6 +133,33 @@ int main()
         }
 
         stdvector.clear();
+
+        // stdvector => reserve(100)
+
+        //                400           400
+        // 데이터를 
+        std::vector<int> stdvector2 = stdvector;
+        // 자료구조를 사용하게 되면서 큰 바이트들을 운용하기 시작한다.
+        // 복사에 
+
+        std::cout << "claer after capacity : " << stdvector.capacity() << std::endl;
     }
-    
+
+
+    {
+        UVector<int> stdvector;
+        // stdvector[20] = 20;
+        stdvector.reserve(10);
+
+        for (int i = 0; i < 10; i++)
+        {
+            stdvector.push_back(i);
+            std::cout << "push : " << stdvector[i] << std::endl;
+            std::cout << "capacity : " << stdvector.capacity() << std::endl;
+            std::cout << "size     : " << stdvector.size() << std::endl;
+        }
+
+        // stdvector.cl
+    }
+
 }

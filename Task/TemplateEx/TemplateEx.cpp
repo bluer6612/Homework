@@ -4,6 +4,7 @@
 #include <iostream>
 #include "TClass.h"
 #include "AActor.h"
+#include <vector>
 
 // 템플릿 주의사항
 
@@ -38,6 +39,15 @@ int main()
     // 이 스택에서 지역변수가 n바이트 사용되었다. => 고정되어 있는 문법들이 있어야 한다.
     // 명확하게 템플릿의 타입을 명확하게 지정해주지 않으면 안된다.
     MyClass<int> NewMyClass = MyClass<int>();
+
+    // MyClass<int> => 자료형
+    // int => 자료형
+
+    // MyClass<AActor>
+
+    // MyClass<MyClass<AActor>>
+
+    std::vector<std::vector<int>> Arr;
 
     TClass<AActor> TestValue;
 
