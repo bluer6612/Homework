@@ -24,10 +24,11 @@ public:
 
 	class Renderer* CreateDefaultSubObject();
 
-	class Renderer* GetImageRenderer()
-	{
-		return ImageRenderer;
-	}
+	class Renderer* GetImageRenderer();
+
+	void SetBlockImage(int _BlockImage);
+
+	int GetBlockImage(FIntPoint _Dir);
 
 protected:
 	// ConsoleImage RenderImage;
@@ -38,6 +39,7 @@ protected:
 private:
 	class Renderer* ImageRenderer;
 	FIntPoint Pos;
+	int BlockImage;
 	// 동적할당 할거냐 말거냐?
 };
 

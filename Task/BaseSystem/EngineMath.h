@@ -6,6 +6,7 @@ public:
 	int X = 0;
 	int Y = 0;
 
+	static const FIntPoint NONE;
 	static const FIntPoint LEFT;
 	static const FIntPoint RIGHT;
 	static const FIntPoint UP;
@@ -34,6 +35,10 @@ public:
 		return X == _Other.X && Y == _Other.Y;
 	}
 
+	bool operator!=(FIntPoint _Other) const
+	{
+		return X != _Other.X && Y != _Other.Y;
+	}
 	FIntPoint& operator+=(FIntPoint _Other)
 	{
 		X += _Other.X;

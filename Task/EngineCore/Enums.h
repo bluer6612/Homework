@@ -11,5 +11,12 @@ public:
 		UP,
 		DOWN,
 	};
+
+	enum class BLOCK
+	{
+		NONE,
+		BOTTOM,
+		BLOCK,
+	};
 };
 

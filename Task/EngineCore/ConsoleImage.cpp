@@ -32,7 +32,15 @@ void ConsoleImage::Clear(char _Clearchar)
 	{
 		for (size_t x = 0; x < ImageSize.X; x++)
 		{
-			Pixels[y][x] = _Clearchar;
+			if (0 == GetPixel(x, y))
+			{
+				Pixels[y][x] = _Clearchar;
+			}
+			else
+			{
+				Pixels[y][x] = GetPixel(x, y);
+			}
+
 		}
 		// 마지막라인에 0을 넣는다.
 		Pixels[y][ImageSize.X] = 0;
@@ -42,13 +50,13 @@ void ConsoleImage::Clear(char _Clearchar)
 void ConsoleImage::SetPixel(FIntPoint _Pos, char _Char)
 {
 	// 화면 바깥에 그려지는것 막은것
-	if (0 > _Pos.X || ImageSize.X < _Pos.X)
+	if (0 > _Pos.X || ImageSize.X <= _Pos.X)
 	{
 		return;
 	}
 
 	// 화면 바깥에 그려지는것 막은것.
-	if (0 > _Pos.Y || ImageSize.Y < _Pos.Y)
+	if (0 > _Pos.Y || ImageSize.Y <= _Pos.Y)
 	{
 		return;
 	}
