@@ -46,19 +46,43 @@ public:
     {
         if (nullptr != Start)
         {
-            delete[] Start;
+            delete Start;
             Start = nullptr;
         }
         if (nullptr != End)
         {
-            delete[] End;
+            delete End;
             End = nullptr;
         }
-        if (nullptr != Data)
-        {
-            delete[] Data;
-            Data = nullptr;
-        }
+
+    }
+
+
+
+
+
+        //{
+        //    // 그냥 안하는데 그냥
+        //    int& Ref = (*new int());
+
+        //    Ref + Ref;
+
+        //    delete& Ref;
+        //}
+
+        //{
+        //    // 그냥 안하는데 그냥
+        //    int* Ptr = new int();
+        //    int& Ref = *Ptr;
+
+        //    Ref + Ref;
+
+        //    delete Ptr;
+        //}
+
+    size_t size() const
+    {
+        return SizeValue;
     }
 
     // push_back의 역개념함수
@@ -66,6 +90,7 @@ public:
     {
         UListNode* ListNode = new UListNode();
         ListNode->Data = _Data;
+        ++SizeValue;
 
         ListNode->Prev = Start;
         ListNode->Next = Start->Next;
@@ -79,6 +104,7 @@ public:
     {
         UListNode* ListNode = new UListNode();
         ListNode->Data = _Data;
+        ++SizeValue;
 
         ListNode->Next = End;
         ListNode->Prev = End->Prev;
@@ -93,6 +119,6 @@ public:
 private:
     UListNode* Start = nullptr;
     UListNode* End = nullptr;
-
+    size_t SizeValue = 0;
 };
 
