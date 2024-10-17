@@ -1,7 +1,7 @@
 #include "Object.h"
 #include "Enums.h"
 #include <iostream>
-#include <BaseSystem/EngineDebug.h>
+#include <EngineBase/EngineDebug.h>
 
 void UObject::SetName(const char* const _Name)
 {

@@ -4,7 +4,7 @@
 #include <conio.h>
 #include "Orc.h"
 #include "Goblin.h"
-#include <BaseSystem/EngineDebug.h>
+#include <EngineBase/EngineDebug.h>
 #include "TextRpgCore.h"
 #include "Orc.h"
 #include "Goblin.h"

@@ -2,12 +2,12 @@
 #include "FightZone.h"
 #include "Town.h"
 #include "Player.h"
-#include <BaseSystem/EngineDebug.h>
-#include <BaseSystem/EngineFile.h>
+#include <EngineBase/EngineDebug.h>
+#include <EngineBase/EngineFile.h>
 
 // #include "EngineFile.h"
 
-// #include "..\BaseSystem\EngineFile.h"
+// #include "..\EngineBase\EngineFile.h"
 // 정석적인 방법은 아닙니다.
 
 // #include < <= 시작하는 외부경로는 크게 2가지 기능의 영향을 받는다.
