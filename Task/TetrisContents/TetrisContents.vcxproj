@@ -19,16 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">
+      <Project>{47e3aad8-cc6c-46c3-86c8-b7ca1a81da66}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\EngineCore\EngineCore.vcxproj">
       <Project>{f83ba35a-295f-4844-add0-06fda7cba5f0}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
+    <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="TetrisInit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="TetrisInit.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

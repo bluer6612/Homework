@@ -3,9 +3,11 @@
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="TetrisInit.h" />
+    <ClInclude Include="RenderTarget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="TetrisInit.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
   </ItemGroup>
 </Project>

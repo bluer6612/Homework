@@ -7,7 +7,6 @@
 
 int main()
 {
-    Player
     TetrisInit Init;
     ConsoleEngine::Start(&Init);
 }

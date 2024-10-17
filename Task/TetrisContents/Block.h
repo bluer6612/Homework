@@ -6,5 +6,12 @@ class Block : public AActor
 public:
 	void BeginPlay() override;
 	void Tick() override;
-};
 
+	inline void SetRenderTarget(class RenderTarget* _RenderValue)
+	{
+		RenderValue = _RenderValue;
+	}
+
+private:
+	RenderTarget* RenderValue = nullptr;
+};

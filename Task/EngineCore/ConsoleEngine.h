@@ -48,11 +48,15 @@ private:
 	bool EngineActive = true;
 
 	// 전방선언도 안해줘도 된다.
+	// 포인터로 new 여러분들 알수 있나요? 
+	// 최대한 가독성 위주로한 코드를 칠겁니다.
 	std::vector<class AActor*> AllActorVector;
 	// std::list<class AActor*> AllActorVector;
 
 	void BeginPlay(); // 움직인다.
 	void Tick(); // 움직인다.
+	void Release(); // 정리할 오브젝트들을 정리하는.
+
 	void Render(); // 그린다.
 
 	void End();
