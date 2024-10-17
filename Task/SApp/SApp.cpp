@@ -1,15 +1,11 @@
-﻿// App.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+﻿// SApp.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
 #include <iostream>
-#include <EngineCore/ConsoleEngine.h>
-#include <TetrisContents/TetrisInit.h>
 
 int main()
 {
-    Player
-    TetrisInit Init;
-    ConsoleEngine::Start(&Init);
+    std::cout << "Hello World!\n";
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴

@@ -49,6 +49,7 @@ private:
 
 	// 전방선언도 안해줘도 된다.
 	std::vector<class AActor*> AllActorVector;
+	// std::list<class AActor*> AllActorVector;
 
 	void BeginPlay(); // 움직인다.
 	void Tick(); // 움직인다.
