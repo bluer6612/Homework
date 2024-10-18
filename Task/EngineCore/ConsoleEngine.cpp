@@ -64,21 +64,21 @@ void ConsoleEngine::BeginPlay()
 
 void ConsoleEngine::Tick()
 {
-	for (size_t i = 0; i < AllActorVector.size(); i++)
+	std::list<class AActor*>::iterator StartIter = AllActors.begin();
+	std::list<class AActor*>::iterator EndIter = AllActors.end();
+
+	for (; StartIter != EndIter; ++StartIter)
 	{
-		if (false == AllActorVector[i]->IsTickable())
+		AActor* CurActor = *StartIter;
+
+		if (false == CurActor->IsTickable())
 		{
 			continue;
 		}
 
-		AllActorVector[i]->Tick();
-
-		// 예상안됨
-		//if (true == AllActorVector[i]->IsDestory())
-		//{
-		//	delete AllActorVector[i];
-		//}
+		CurActor->Tick();
 	}
+
 }
 
 void ConsoleEngine::Render()
@@ -86,14 +86,20 @@ void ConsoleEngine::Render()
 	Window->Clear();
 
 	ConsoleImage* BackBufferPtr = Window->GetBackBufferPtr();
-	for (size_t i = 0; i < AllActorVector.size(); i++)
+
+	std::list<class AActor*>::iterator StartIter = AllActors.begin();
+	std::list<class AActor*>::iterator EndIter = AllActors.end();
+
+	for (; StartIter != EndIter; ++StartIter)
 	{
-		if (false == AllActorVector[i]->IsTickable()) 
+		AActor* CurActor = *StartIter;
+
+		if (false == CurActor->IsTickable())
 		{
 			continue;
 		}
 
-		AllActorVector[i]->Render(BackBufferPtr);
+		CurActor->Render(BackBufferPtr);
 	}
 
 	Window->ScreenRender();
@@ -101,17 +107,22 @@ void ConsoleEngine::Render()
 
 void ConsoleEngine::Release()
 {
-	// tick도 끝나고
-	// 랜더도 끝나고
-	for (size_t i = 0; i < AllActorVector.size(); i++)
+	// 삭제쪽에서는 
+
+	std::list<class AActor*>::iterator StartIter = AllActors.begin();
+	std::list<class AActor*>::iterator EndIter = AllActors.end();
+
+	for (; StartIter != EndIter; )
 	{
-		if (false == AllActorVector[i]->IsDestory())
+		AActor* CurActor = *StartIter;
+
+		if (false == CurActor->IsDestory())
 		{
+			++StartIter;
 			continue;
 		}
 
-		// 벡터는 구멍이 뚫립니다.
-		delete AllActorVector[i];
-		AllActorVector[i] = nullptr;
+		delete CurActor;
+		StartIter = AllActors.erase(StartIter);
 	}
 }
