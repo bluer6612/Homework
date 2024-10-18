@@ -50,6 +50,19 @@ public:
     MapNode* RightChild;
 };
 
+
+class greater
+{
+    // 연산자를 겹지정한 클래스를()
+    // 함수 객체라고 한다.
+public:
+    bool operator()(int _left, int _Right)
+    {
+        return _left < _Right;
+    }
+};
+
+
 //class MapData
 //{
 //public:
@@ -59,6 +72,8 @@ public:
 
 int main()
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
     // 상속 받았어?
     // 컴파일 타임 어써션과 템플릿 컴파일을 이용한 컴파일시 결정되는 
     // 다이나믹 캐스트를 사용하지 않고 더 빠른 상속 판단 클래스
@@ -97,17 +112,6 @@ int main()
         }
     }
 
-    {
-        std::map<int, int> Test;
-        std::map<int, int>::iterator StartIter = Test.begin();
-        std::map<int, int>::iterator EndIter = Test.end();
-
-        for (; StartIter != EndIter; ++StartIter)
-        {
-            StartIter->second;
-            // int Value = *StartIter;
-        }
-    }
 
     {
         // Set은 value가 없는 map입니다.
@@ -116,7 +120,10 @@ int main()
         // Map은 Value가 추가된 set입니다.
         // Map 메모리 형태 => 노드형
         // Map은 어떤 컨테이너 인가요? 연관 컨테이너
-        std::map<int, int> TestMap;
+        // 맵에는 세번째 템플릿 인자가 있다.
+        // 보통 맵을 특정 데이터들을 빠르게(코드 치는걸 빠르게) 하고 싶을때
+        // 용도로 사용할때 사용합니다.
+        std::map<int, int, std::greater<int>> TestMap;
 
 
         // 클래스
@@ -178,7 +185,6 @@ int main()
         PairValue.first = 10;
         PairValue.second = 2;
 
-
         TestMap.insert({10, 0}); // <= root
         TestMap.insert({ 2, 0 });
         TestMap.insert(Umake_pair(6, 0));
@@ -187,9 +193,12 @@ int main()
         TestMap.insert(Umake_pair(7, 9999));
         TestMap.insert(Umake_pair(15, 0));
 
-        UMap::iterator FindIter = TestMap.Find(7);
-        FindIter->first;
-        FindIter->second;
+        //UMap::iterator FindIter = TestMap.Find(10);
+
+        //FindIter = TestMap.erase(FindIter);
+
+        //FindIter->first;
+        //FindIter->second;
 
         //FindIter.operator->()->first;
         //FindIter.operator->()->second;
@@ -200,18 +209,19 @@ int main()
         //Pair.second;
         //PairPtr->first;
         //PairPtr->second;
-        TestMap.Root;
+        // TestMap.Root;
 
-        UMap::iterator StartIter = TestMap.begin();
-        UMap::iterator EndIter = TestMap.end();
+        //UMap::iterator StartIter = TestMap.begin();
+        //UMap::iterator EndIter = TestMap.end();
+        //for (; StartIter != EndIter; ++StartIter)
+        //{
+        //    KeyType Value = StartIter->first;
+        //    std::cout << StartIter->first << std::endl;
+        //}
 
-        // 10 2 5 7 15
-
-        for (; StartIter != EndIter; ++StartIter)
-        {
-            KeyType Value = StartIter->first;
-            std::cout << StartIter->first << std::endl;
-        }
+        // TestMap.FirstOrder();
+        // TestMap.MidOrder();
+        // TestMap.LastOrder();
     }
 }
 

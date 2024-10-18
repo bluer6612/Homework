@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 
 typedef int KeyType;
@@ -13,6 +14,18 @@ public:
 
 UPair Umake_pair(const KeyType& _Key, const ValueType& _Value);
 
+class less
+{
+	// 연산자를 겹지정한 클래스를()
+	// 함수 객체라고 한다.
+public:
+	bool operator()(int _left, int _Right)
+	{
+		return _left > _Right;
+	}
+};
+
+
 // template<typename KeyType, typename ValueType>
 class UMap
 {
@@ -24,6 +37,68 @@ private:
 		UMapNode* LeftChild = nullptr;
 		UMapNode* RightChild = nullptr;
 		UPair Pair;
+
+		//            전위순회
+		void FirstOrder()
+		{
+			// 무언가 할일이 있다면 그걸 처음에 하느냐
+			std::cout << Pair.first << std::endl;
+			// delete this;
+			if (nullptr != this->LeftChild)
+			{
+				LeftChild->FirstOrder();
+			}
+			if (nullptr != this->RightChild)
+			{
+				RightChild->FirstOrder();
+			}
+		}
+		//            중위순회
+		void MidOrder()
+		{
+			if (nullptr != LeftChild)
+			{
+				LeftChild->MidOrder();
+			}
+			// 무언가 할일이 있다면 그걸 가운데 
+			std::cout << Pair.first << std::endl;
+			if (nullptr != RightChild)
+			{
+				RightChild->MidOrder();
+			}
+		}
+		//            후위순회
+		void LastOrder()
+		{
+			if (nullptr != LeftChild)
+			{
+				LeftChild->LastOrder();
+			}
+			if (nullptr != RightChild)
+			{
+				RightChild->LastOrder();
+			}
+			// 무언가 할일이 있다면 그걸 가운데 
+			std::cout << Pair.first << std::endl;
+
+		}
+
+		void ChildRelease(UMapNode* _Node)
+		{
+			// _Node->Parent = nullptr;
+
+			if (LeftChild == _Node)
+			{
+				LeftChild = nullptr;
+				return;
+			}
+
+			if (RightChild == _Node)
+			{
+				RightChild = nullptr;
+				return;
+			}
+		}
 
 		UMapNode* OverParent(const KeyType& _Key)
 		{
@@ -101,7 +176,11 @@ private:
 			}
 
 			//  10            2
-			if (Pair.first > _Pair.first)
+			// 이 > 하나 때문이다. 
+
+			less NewLess;
+
+			if (NewLess(Pair.first, _Pair.first))
 			{
 				if (nullptr == LeftChild)
 				{
@@ -135,6 +214,7 @@ private:
 public:
 	class iterator
 	{
+		friend UMap;
 	public:
 		iterator& operator++()
 		{
@@ -190,6 +270,135 @@ public:
 
 		UMapNode* Node = Root->FindNode(_Key);
 		return iterator(Node);
+	}
+
+	iterator erase(iterator& _iter)
+	{
+		// 절대 안바뀔 코드는 먼저 치는게 좋다.
+		iterator Return = _iter.CurNode->NextNode();
+		UMapNode* CurNode = _iter.CurNode;
+		UMapNode* Parent = _iter.CurNode->Parent;
+
+		// 자식이 없을때
+		if (nullptr == CurNode->LeftChild && 
+			nullptr == CurNode->RightChild)
+		{
+			// 루트노드라는 뜻
+			// 루트노드가 삭제되었다는 뜻이
+			if (nullptr == Parent)
+			{
+				Root = nullptr;
+			}
+
+			Parent->ChildRelease(CurNode);
+
+			delete CurNode;
+			CurNode = nullptr;
+			return Return;
+		}
+
+		if (nullptr != CurNode->LeftChild ||
+			nullptr != CurNode->RightChild)
+		{
+			UMapNode* ChangeNode = nullptr;
+			// 나를 대체할 노드
+
+			if (nullptr != CurNode->LeftChild)
+			{
+				ChangeNode = CurNode->LeftChild->MaxNode();
+			}
+			else 
+			{
+				ChangeNode = CurNode->RightChild->MinNode();
+			}
+
+			if (nullptr != ChangeNode->Parent)
+			{
+				ChangeNode->Parent->ChildRelease(ChangeNode);
+			}
+
+			UMapNode* CurLeftChild = CurNode->LeftChild;
+			UMapNode* CurRightChild = CurNode->RightChild;
+
+			// 삭제될 노드의 자식들의 부모를 미리 끊어 놓는다.
+			if (nullptr != CurLeftChild)
+			{
+				CurLeftChild->Parent = nullptr;
+			}
+
+			if (nullptr != CurRightChild)
+			{
+				CurRightChild->Parent = nullptr;
+			}
+
+
+			if (nullptr != CurLeftChild)
+			{
+				if (CurLeftChild != ChangeNode)
+				{
+					CurLeftChild->Parent = ChangeNode;
+					ChangeNode->LeftChild = CurLeftChild;
+				}
+			}
+
+			if (nullptr != CurRightChild)
+			{
+				if (CurRightChild != ChangeNode)
+				{
+					CurRightChild->Parent = ChangeNode;
+					ChangeNode->RightChild = CurRightChild;
+				}
+			}
+
+			ChangeNode->Parent = CurNode->Parent;
+
+			UMapNode* ParentNode = CurNode->Parent;
+
+			if (nullptr != ParentNode)
+			{
+				if (ParentNode->RightChild == CurNode)
+				{
+					ParentNode->RightChild = ChangeNode;
+				}
+				else
+				{
+					ParentNode->LeftChild = ChangeNode;
+				}
+			}
+
+			if (Root == CurNode)
+			{
+				Root = ChangeNode;
+			}
+
+			delete CurNode;
+			CurNode = nullptr;
+			return Return;
+		}
+
+		return nullptr;
+	}
+
+	// 2진트리에는 전위순회
+	void FirstOrder()
+	{
+		std::cout << "전위 순회" << std::endl;
+		Root->FirstOrder();
+		std::cout << std::endl;
+	}
+	//            중위순회
+	void MidOrder()
+	{
+		std::cout << "중위 순회" << std::endl;
+		Root->MidOrder();
+		std::cout << std::endl;
+	}
+	//            후위순회
+	void LastOrder()
+	{
+		std::cout << "후위 순회" << std::endl;
+		Root->LastOrder();
+		std::cout << std::endl;
 	}
 
 	void insert(const UPair& _Pair)
