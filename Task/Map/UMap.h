@@ -78,9 +78,9 @@ private:
 			{
 				RightChild->LastOrder();
 			}
-			// 무언가 할일이 있다면 그걸 가운데 
-			std::cout << Pair.first << std::endl;
-
+			// 무언가 할일이 있다면 그걸 가운데
+			
+			delete this;
 		}
 
 		void ChildRelease(UMapNode* _Node)
